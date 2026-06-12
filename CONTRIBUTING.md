@@ -4,7 +4,47 @@ This project trains you to work the way professional teams work. The rules below
 
 Read this whole document before you open your first pull request. Reviewers will close PRs that ignore it, with a link back to the section you skipped.
 
-## The Workflow
+## Issues
+
+Every change to this project starts as an issue. The issue is where scope gets agreed before anyone writes code, so a weak issue produces wasted work no matter how good the eventual PR is.
+
+### Before you open one
+
+1. Search open and closed issues for duplicates. If a match exists, add your information as a comment there instead of opening a new one. Duplicates get closed with a link to the original.
+2. Confirm you can reproduce the problem on the latest `main`. Bugs that only appear on stale branches are not bugs.
+3. One problem per issue. A bug report that also requests a feature gets sent back to be split.
+
+### Bug reports
+
+Fill in every section of the bug template. A complete report contains:
+
+1. **Summary**: one sentence stating what breaks.
+2. **Steps to reproduce**: a numbered list a stranger can follow exactly. "Log in and click around the cart" fails. "1. Log in as a standard user. 2. Add one item to the cart. 3. Click Remove." passes.
+3. **Expected behavior**: what should have happened.
+4. **Actual behavior**: what happened instead, with the exact error message or a screenshot.
+5. **Environment**: OS, browser or runtime version, and the commit hash from `git rev-parse --short HEAD`.
+
+A report a maintainer cannot reproduce from your steps gets labeled `needs-repro` and closes after 14 days without an update.
+
+### Feature requests
+
+Describe the problem before the solution. A complete request contains:
+
+1. **Problem**: who is affected and what they cannot do today.
+2. **Proposed solution**: your idea, sketched in a paragraph. Mockups welcome.
+3. **Alternatives**: at least one other approach you considered and why you set it aside.
+
+Requests that open with an implementation ("add a Redis cache") and never state the underlying problem get sent back. The maintainers may accept your problem and reject your solution; that counts as the issue working as designed.
+
+### Issue titles
+
+Write titles the way you write commit subjects: specific and under 70 characters. "Cart crashes when removing the last item" passes. "Bug in cart" and "URGENT please fix" fail.
+
+### Claiming work
+
+Comment on the issue asking for assignment before you start. A maintainer assigns it, confirming the scope is current and nobody else is mid-flight on it. Assigned issues with no linked branch or update after 14 days get unassigned so others can pick them up.
+
+
 
 1. Find or open an issue describing the change.
 2. Get the issue assigned to you. Do not start work on an unassigned issue.
