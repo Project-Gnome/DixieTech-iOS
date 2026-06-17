@@ -78,38 +78,18 @@ struct StudentIDCardView: View {
     }
     
     private var studentDetails: some View {
-        VStack {
-            AsyncImage(url: id.imageURL) { phase in
-                switch phase {
-                    case .empty where id.imageURL != nil:
-                        ProgressView()
-                            .frame(width: 75, height: 75)
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 75, height: 75)
-                            .clipShape(.rect(cornerRadius: 15))
-                    default:
-                        EmptyView()
-                }
+        VStack(alignment: .center) {
+            if let name = id.name {
+                Text(verbatim: name)
+                    .font(.title2)
+                    .bold()
             }
             
-            VStack(alignment: .center) {
-                if let name = id.name {
-                    Text(verbatim: name)
-                        .font(.title2)
-                        .bold()
-                }
-                
-                if let program = id.program {
-                    Text(verbatim: program)
-                        .font(.subheadline)
-                        .fontWeight(.light)
-                }
+            if let program = id.program {
+                Text(verbatim: program)
+                    .font(.subheadline)
+                    .fontWeight(.light)
             }
-            
-            Spacer()
         }
         .padding(.horizontal)
     }
@@ -119,7 +99,7 @@ struct StudentIDCardView: View {
             Text("dixietech.edu")
             
             Spacer()
-        
+            
             if let expiresAt = id.expiresAt {
                 Text("**Expires:** \(expiresAt, format: .twoDigitDate)")
             }
@@ -137,7 +117,6 @@ struct StudentIDCardView: View {
                 id: 1234567890, // Fake 10 digit student id
                 name: "Ryan Reynolds",
                 program: "Mobile App Development",
-                imageURL: URL(string: "https://haircuts4men.b-cdn.net/wp-content/uploads/2023/05/Ryan-Reynolds-Dapper-Look-1024x1024.jpg"),
                 expiresAt: .now + 10000
             ),
             barcodeImage: try? Barcode.generate(for: 1234567890)

@@ -19,9 +19,6 @@ struct StudentIDCard: Identifiable {
     /// The program the student is enrolled in.
     var program: String?
     
-    /// Where the students id image can be found at (local cache url)
-    var imageURL: URL?
-    
     /// When the student id expires.
     var expiresAt: Date?
 }
