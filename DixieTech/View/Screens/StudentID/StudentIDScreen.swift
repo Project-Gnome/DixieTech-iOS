@@ -9,7 +9,11 @@ import SwiftUI
 
 struct StudentIDScreen: View {
     
-    @State private var viewModel = StudentIDVM()
+    @State private var viewModel: StudentIDVM
+    
+    init(defaults: UserDefaults) {
+        viewModel = StudentIDVM(defaults: defaults)
+    }
     
     var body: some View {
         if let id = viewModel.id {
@@ -31,5 +35,7 @@ struct StudentIDScreen: View {
 }
 
 #Preview {
-    StudentIDScreen()
+    StudentIDScreen(
+        defaults: UserDefaults.standard
+    )
 }

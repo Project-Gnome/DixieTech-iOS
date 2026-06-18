@@ -8,7 +8,7 @@
 import Foundation
 
 /// A data representation of the information found on a Student ID card
-struct StudentIDCard: Identifiable {
+struct StudentIDCard: Identifiable, Codable {
     
     /// The students id, a 10 digit number representing the student.
     var id: Int

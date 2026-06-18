@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DTProgram: String, CaseIterable, Comparable {
+enum DTProgram: String, CaseIterable, Comparable, Codable {
     // Computer Technologies
     case crm = "CRM Systems"
     case digitalDesign = "Digital Design"
