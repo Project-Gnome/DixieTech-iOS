@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6C4C542D2FE35C9A004286B1 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 6C4C542C2FE35C9A004286B1 /* CodeScanner */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6C3645BC2FDBEF4700F77CA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C4C542D2FE35C9A004286B1 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = DixieTech;
 			packageProductDependencies = (
+				6C4C542C2FE35C9A004286B1 /* CodeScanner */,
 			);
 			productName = DixieTech;
 			productReference = 6C3645AE2FDBEF4600F77CA1 /* DixieTech.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 6C3645A52FDBEF4600F77CA1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6C4C542B2FE35C9A004286B1 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6C3645AF2FDBEF4600F77CA1 /* Products */;
 			projectDirPath = "";
@@ -400,6 +409,7 @@
 				DEVELOPMENT_TEAM = VG7LJNG82R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires camera access to scan your student id";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -432,6 +442,7 @@
 				DEVELOPMENT_TEAM = VG7LJNG82R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires camera access to scan your student id";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -578,6 +589,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6C4C542B2FE35C9A004286B1 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6C4C542C2FE35C9A004286B1 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C4C542B2FE35C9A004286B1 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6C3645A62FDBEF4600F77CA1 /* Project object */;
 }

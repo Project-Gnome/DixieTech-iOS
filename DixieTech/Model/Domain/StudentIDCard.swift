@@ -14,11 +14,11 @@ struct StudentIDCard: Identifiable {
     var id: Int
     
     /// The name of the student.
-    var name: String?
+    var name: String
     
     /// The program the student is enrolled in.
-    var program: String?
+    var program: DTProgram
     
     /// When the student id expires.
-    var expiresAt: Date?
+    var expiresAt: Date
 }

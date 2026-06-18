@@ -1,0 +1,122 @@
+//
+//  StudentIDInputScreen.swift
+//  DixieTech
+//
+//  Created by Lukas Simonson on 6/17/26.
+//
+
+import AVFoundation
+import CodeScanner
+import SwiftUI
+
+struct StudentIDForm: View {
+    
+    @State private var viewModel = StudentIDFormVM()
+    @State private var showScanner = false
+    
+    let onCreateID: (StudentIDCard) -> Void
+    
+    private var validGraduationRange: ClosedRange<Date> {
+        Date()...(Date() + 63_113_904) // Up to two years from today
+    }
+    
+    var body: some View {
+        Form {
+            studentInfoSection
+            programInfoSection
+        }
+        .navigationTitle("Add a Student ID")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button("Done") {
+                    if let idCard = viewModel.validate() {
+                        onCreateID(idCard)
+                    }
+                }
+            }
+        }
+        .popover(isPresented: $showScanner) {
+            CodeScannerView(codeTypes: [.codabar, .code39, .code39Mod43, .code93, .code128]) { result in
+                switch result {
+                    case .success(let success):
+                        if let idNumber = Int(success.string) {
+                            viewModel.studentID = String(idNumber)
+                        } else {
+                            print("Invalid Barcode")
+                        }
+                    case .failure(let failure):
+                        print(failure)
+                }
+                showScanner = false
+            }
+        }
+    }
+    
+    private var studentInfoSection: some View {
+        Section("Student Info") {
+            VStack(alignment: .leading) {
+                HStack {
+                    TextField("Student ID", text: $viewModel.studentID)
+                        .keyboardType(.numberPad)
+                    
+                    Button("Scan your ID", systemImage: "barcode.viewfinder") {
+                        showScanner = true
+                    }
+                    .labelStyle(.iconOnly)
+                }
+            }
+            
+            if !viewModel.studentIDIssues.isEmpty {
+                VStack {
+                    ForEach(viewModel.studentIDIssues, id: \.self) { issue in
+                        Text(issue)
+                            .font(.footnote)
+                            .foregroundStyle(Color.red)
+                    }
+                }
+            }
+            
+            TextField("Name", text: $viewModel.name)
+            
+            if !viewModel.nameIssues.isEmpty {
+                VStack {
+                    ForEach(viewModel.nameIssues, id: \.self) { issue in
+                        Text(issue)
+                            .font(.footnote)
+                            .foregroundStyle(Color.red)
+                    }
+                }
+            }
+        }
+    }
+    
+    private var programInfoSection: some View {
+        Section("Program Info") {
+            Picker("Program", selection: $viewModel.program) {
+                ForEach(DTProgram.allCases.sorted(), id: \.self) { program in
+                    Text(program.rawValue)
+                }
+            }
+            
+            VStack {
+                DatePicker(
+                    "Graduation Date",
+                    selection: $viewModel.graduation,
+                    in: validGraduationRange,
+                    displayedComponents: .date
+                )
+            }
+        }
+    }
+}
+
+#Preview {
+    NavigationStack {
+        StudentIDForm(
+            onCreateID: { _ in
+                
+            }
+        )
+    }
+}

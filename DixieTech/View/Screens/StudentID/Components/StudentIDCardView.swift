@@ -79,17 +79,13 @@ struct StudentIDCardView: View {
     
     private var studentDetails: some View {
         VStack(alignment: .center) {
-            if let name = id.name {
-                Text(verbatim: name)
-                    .font(.title2)
-                    .bold()
-            }
+            Text(verbatim: id.name)
+                .font(.title2)
+                .bold()
             
-            if let program = id.program {
-                Text(verbatim: program)
-                    .font(.subheadline)
-                    .fontWeight(.light)
-            }
+            Text(id.program.rawValue)
+                .font(.subheadline)
+                .fontWeight(.light)
         }
         .padding(.horizontal)
     }
@@ -100,9 +96,7 @@ struct StudentIDCardView: View {
             
             Spacer()
             
-            if let expiresAt = id.expiresAt {
-                Text("**Expires:** \(expiresAt, format: .twoDigitDate)")
-            }
+            Text("**Expires:** \(id.expiresAt, format: .twoDigitDate)")
         }
         .font(.footnote)
         .padding(.horizontal, 10)
@@ -116,7 +110,7 @@ struct StudentIDCardView: View {
             id: StudentIDCard(
                 id: 1234567890, // Fake 10 digit student id
                 name: "Ryan Reynolds",
-                program: "Mobile App Development",
+                program: .mobileApp,
                 expiresAt: .now + 10000
             ),
             barcodeImage: try? Barcode.generate(for: 1234567890)
