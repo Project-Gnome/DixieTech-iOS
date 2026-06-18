@@ -68,8 +68,7 @@ struct StudentIDCardView: View {
                     .interpolation(.none)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                
-                Text(verbatim: String(id.id)) // Creates a String as a way to prevent number styling.
+                Text(verbatim: String(id.id)) // Creates a String way to prevent number styling.
                     .font(.subheadline.monospaced())
                     .bold()
             }
@@ -113,7 +112,7 @@ struct StudentIDCardView: View {
                 program: .mobileApp,
                 expiresAt: .now + 10000
             ),
-            barcodeImage: try? Barcode.generate(for: 1234567890)
+            barcodeImage: try! Barcode.generate(for: 1234567890)
         )
         .padding()
     }
