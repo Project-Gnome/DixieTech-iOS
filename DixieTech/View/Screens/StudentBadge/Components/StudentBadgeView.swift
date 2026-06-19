@@ -84,6 +84,8 @@ struct StudentBadgeView: View {
                     .interpolation(.none)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .accessibilityLabel("Student badge barcode")
+                
                 Text(verbatim: String(badge.id)) // Creates a String way to prevent number styling.
                     .font(.subheadline.monospaced())
                     .bold()
