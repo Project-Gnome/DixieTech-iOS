@@ -7,9 +7,13 @@
 
 import SwiftUI
 
-struct StudentIDCardView: View {
-    let id: StudentIDCard
+struct StudentBadgeView: View {
+    
+    @State private var showConfirmDeletion = false
+    
+    let badge: StudentBadge
     let barcodeImage: UIImage?
+    let onDelete: () -> Void
     
     var body: some View {
         VStack(spacing: 16) {
@@ -27,6 +31,18 @@ struct StudentIDCardView: View {
             RoundedRectangle(cornerRadius: 15)
                 .fill(Color.white)
                 .shadow(radius: 5)
+        }
+        .contextMenu {
+            Button(
+                "Delete Badge",
+                systemImage: "trash",
+                role: .destructive,
+                action: { showConfirmDeletion = true },
+            )
+            .tint(Color.red)
+        }
+        .alert("Delete This Badge?", isPresented: $showConfirmDeletion) {
+            Button("Delete", role: .destructive, action: onDelete)
         }
     }
     
@@ -68,7 +84,7 @@ struct StudentIDCardView: View {
                     .interpolation(.none)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                Text(verbatim: String(id.id)) // Creates a String way to prevent number styling.
+                Text(verbatim: String(badge.id)) // Creates a String way to prevent number styling.
                     .font(.subheadline.monospaced())
                     .bold()
             }
@@ -78,11 +94,11 @@ struct StudentIDCardView: View {
     
     private var studentDetails: some View {
         VStack(alignment: .center) {
-            Text(verbatim: id.name)
+            Text(verbatim: badge.name)
                 .font(.title2)
                 .bold()
             
-            Text(id.program.rawValue)
+            Text(badge.program.rawValue)
                 .font(.subheadline)
                 .fontWeight(.light)
         }
@@ -95,7 +111,7 @@ struct StudentIDCardView: View {
             
             Spacer()
             
-            Text("**Expires:** \(id.expiresAt, format: .twoDigitDate)")
+            Text("**Expires:** \(badge.expiresAt, format: .twoDigitDate)")
         }
         .font(.footnote)
         .padding(.horizontal, 10)
@@ -105,14 +121,15 @@ struct StudentIDCardView: View {
 
 #Preview {
     ScrollView {
-        StudentIDCardView(
-            id: StudentIDCard(
+        StudentBadgeView(
+            badge: StudentBadge(
                 id: 1234567890, // Fake 10 digit student id
                 name: "Ryan Reynolds",
                 program: .mobileApp,
                 expiresAt: .now + 10000
             ),
-            barcodeImage: try! Barcode.generate(for: 1234567890)
+            barcodeImage: try! Barcode.generate(for: 1234567890),
+            onDelete: { }
         )
         .padding()
     }

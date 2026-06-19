@@ -15,7 +15,7 @@ struct BottomNav: View {
     var body: some View {
         TabView {
             Tab("Badge", systemImage: "person.text.rectangle") {
-                StudentIDScreen(defaults: container.defaults)
+                StudentBadgeScreen(defaults: container.defaults)
                     .tint(nil) // Prevent taking the tint from the TabView
             }
         }

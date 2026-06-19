@@ -1,5 +1,5 @@
 //
-//  StudentIDInputScreen.swift
+//  StudentBadgeForm.swift
 //  DixieTech
 //
 //  Created by Lukas Simonson on 6/17/26.
@@ -9,12 +9,12 @@ import AVFoundation
 import CodeScanner
 import SwiftUI
 
-struct StudentIDForm: View {
+struct StudentBadgeForm: View {
     
-    @State private var viewModel = StudentIDFormVM()
+    @State private var viewModel = StudentBadgeFormVM()
     @State private var showScanner = false
     
-    let onCreateID: (StudentIDCard) -> Void
+    let onCreateBadge: (StudentBadge) -> Void
     
     private var validGraduationRange: ClosedRange<Date> {
         Date()...(Date() + 63_113_904) // Up to two years from today
@@ -31,7 +31,7 @@ struct StudentIDForm: View {
             ToolbarItem(placement: .primaryAction) {
                 Button("Done") {
                     if let idCard = viewModel.validate() {
-                        onCreateID(idCard)
+                        onCreateBadge(idCard)
                     }
                 }
             }
@@ -113,8 +113,8 @@ struct StudentIDForm: View {
 
 #Preview {
     NavigationStack {
-        StudentIDForm(
-            onCreateID: { _ in
+        StudentBadgeForm(
+            onCreateBadge: { _ in
                 
             }
         )

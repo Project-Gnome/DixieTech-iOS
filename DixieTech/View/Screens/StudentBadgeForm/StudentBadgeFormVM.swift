@@ -9,7 +9,7 @@ import Foundation
 import Observation
 
 @Observable
-final class StudentIDFormVM {
+final class StudentBadgeFormVM {
     var studentID = ""
     var name = ""
     var program = DTProgram.mobileApp
@@ -18,14 +18,14 @@ final class StudentIDFormVM {
     private(set) var studentIDIssues = [String]()
     private(set) var nameIssues = [String]()
     
-    func validate() -> StudentIDCard? {
+    func validate() -> StudentBadge? {
         validateStudentID()
         validateName()
         
         guard studentIDIssues.isEmpty && nameIssues.isEmpty
         else { return nil }
         
-        return StudentIDCard(
+        return StudentBadge(
             id: Int(studentID)!, // safe, confirmed by validateStudentID
             name: name,
             program: program,
