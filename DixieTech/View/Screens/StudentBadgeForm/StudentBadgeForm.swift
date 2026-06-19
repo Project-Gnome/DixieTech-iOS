@@ -36,7 +36,7 @@ struct StudentBadgeForm: View {
                 }
             }
         }
-        .popover(isPresented: $showScanner) {
+        .sheet(isPresented: $showScanner) {
             CodeScannerView(codeTypes: [.codabar, .code39, .code39Mod43, .code93, .code128]) { result in
                 switch result {
                     case .success(let success):
@@ -63,6 +63,7 @@ struct StudentBadgeForm: View {
                     Button("Scan your ID", systemImage: "barcode.viewfinder") {
                         showScanner = true
                     }
+                    .font(.title2)
                     .labelStyle(.iconOnly)
                 }
             }
@@ -72,7 +73,7 @@ struct StudentBadgeForm: View {
                     ForEach(viewModel.studentIDIssues, id: \.self) { issue in
                         Text(issue)
                             .font(.footnote)
-                            .foregroundStyle(Color.red)
+                            .foregroundStyle(Color.dtError)
                     }
                 }
             }
@@ -84,7 +85,7 @@ struct StudentBadgeForm: View {
                     ForEach(viewModel.nameIssues, id: \.self) { issue in
                         Text(issue)
                             .font(.footnote)
-                            .foregroundStyle(Color.red)
+                            .foregroundStyle(Color.dtError)
                     }
                 }
             }
