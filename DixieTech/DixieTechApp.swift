@@ -11,13 +11,7 @@ import SwiftUI
 struct DixieTechApp: App {
     var body: some Scene {
         WindowGroup {
-            Image(.dtMainLogo)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea()
-                .background(Color.dtNavy)
+            BottomNav()
         }
     }
 }
